@@ -4,6 +4,7 @@ using namespace std;
 struct arista{
     int datoDestino;
     arista *sgteArista;
+    int peso ;
 };
 typedef arista *parista;
 
@@ -11,6 +12,7 @@ struct vertice{
     int datoOrigen;
     arista *adyacente;
     vertice *sgteVertice;
+    
 };
 typedef vertice *pvertice;
 
@@ -19,19 +21,19 @@ class grafo{
     pvertice pGrafo;
     public:
         grafo();
+        ~grafo();
     void insertarVertice(int);
-    void insertarArista(int,int);
+    void insertarArista(int,int,int);
     void imprimirGrafo();
 };
 
-/*
-grafo::grafo(){
-    
-}
-*/
 
 grafo::grafo(){
     pGrafo=NULL;
+}
+
+
+grafo::~grafo(){
     pvertice p,rp;
     parista r,ra;
     p=pGrafo;
@@ -51,15 +53,15 @@ grafo::grafo(){
 
 void grafo::insertarVertice(int x){
     pvertice p;
-    p=new vertice;
+    p = new vertice;
     p -> datoOrigen=x;
     p -> adyacente=NULL;
-    p -> sgteVertice=pGrafo;
+    p -> sgteVertice = pGrafo;
     pGrafo=p;
 }
 
-void grafo::insertarArista(int x, int y){
-    pvertice p;
+void grafo::insertarArista(int x, int y, int peso){
+	pvertice p;
     parista a;
     p=pGrafo;
     if(p!=NULL){
@@ -68,6 +70,7 @@ void grafo::insertarArista(int x, int y){
         if(p!=NULL){
             a=new arista;
             a -> datoDestino=y;
+            a -> peso=peso;
             a -> sgteArista=p -> adyacente;
             p -> adyacente = a;
         }
@@ -81,10 +84,11 @@ void grafo::imprimirGrafo(){
     if(p==NULL) cout<<"Grafo vacio"<<endl;
     else
         while(p!=NULL){
-            cout<<p -> datoOrigen ;
+            cout<<p -> datoOrigen<<" :  ";
             a=p -> adyacente;
             while(a!=NULL){
-                cout<<a -> datoDestino ;
+                cout <<"(" << a -> peso << ")";
+                cout<<a -> datoDestino<<"  ";
                 a = a -> sgteArista;
             }
             cout<<endl;
@@ -100,10 +104,10 @@ int main(){
     g.insertarVertice(4);
     g.insertarVertice(6);
     g.insertarVertice(3);
-    g.insertarArista(4,6);
-    g.insertarArista(3,6);
-    g.insertarArista(3,4);
-    cout<< "Vertices Aristas" <<endl;
+    g.insertarArista(4,6,9);
+    g.insertarArista(3,6,10);
+    g.insertarArista(3,4,11);
+    cout<< "Vertices (Peso) Aristas" <<endl;
     g.imprimirGrafo();
 
     return 0;
