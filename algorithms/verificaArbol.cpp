@@ -76,13 +76,13 @@ int main()
     grafo1.insertarArista(3,8);
     grafo1.insertarArista(4,9);
     
-    cout<<"Grafo es un árbol : ";
+    cout<<"Grafo es un ?rbol : ";
     cout<<esArbol(grafo1)<<endl;
 
     // Ahora si juntamos una arista que una el vertice 1-2
     // deberia mostrar que no es un arbol
-    cout<<"Añadiendo arista \n";
-    cout<<"Grafo es un árbol : ";
+    cout<<"A?adiendo arista \n";
+    cout<<"Grafo es un ?rbol : ";
     grafo1.insertarArista(1,2);
     cout<<esArbol(grafo1)<<endl;
     return 0;
