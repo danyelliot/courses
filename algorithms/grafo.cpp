@@ -52,8 +52,8 @@ grafo::~grafo(){
 }
 
 void grafo::insertarVertice(int x){
-    pvertice p;
-    p = new vertice;
+    pvertice p = new vertice;
+    
     p -> datoOrigen=x;
     p -> adyacente=NULL;
     p -> sgteVertice = pGrafo;
